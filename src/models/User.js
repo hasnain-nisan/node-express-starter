@@ -1,6 +1,5 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../db/sequelize');
-const Joi = require('joi');
 
 const User = sequelize.define('User', {
     name: {
@@ -21,15 +20,5 @@ const User = sequelize.define('User', {
         },
     },
 });
-
-// Validate user input using Joi
-User.validateInput = (userInput) => {
-    const schema = Joi.object({
-        name: Joi.string().min(2).max(255).required(),
-        email: Joi.string().email().required(), 
-    });
-
-    return schema.validate(userInput);
-};
 
 module.exports = User;
